@@ -5,13 +5,13 @@ ARG NIMFLAGS
 ARG MAKE_TARGET=wakunode2
 ARG NIM_COMMIT
 ARG HEAPTRACK_BUILD=0
-ARG POSTGRES=0
+ARG POSTGRES=1
 # Jenkins and `make docker-image` pass both of these as build arguments.
 #
 # DEBUG selects the build mode. Make reads 0 as release and an unset value as
 # debug, so no default here leaves a direct `docker build` unchanged.
 # `make docker-image` passes DEBUG=0.
-ARG DEBUG
+ARG DEBUG=0
 # LOG_LEVEL is the chronicles compile-time floor: statements below it are not
 # compiled into the binary. Unset leaves whatever default the build target
 # already applies.
@@ -64,7 +64,7 @@ LABEL version="unknown"
 EXPOSE 30303 60000 8545
 
 # Referenced in the binary
-RUN apk add --no-cache libgcc libpq-dev bind-tools libstdc++
+RUN apk add --no-cache libgcc libpq-dev bind-tools libstdc++ curl
 
 # Copy to separate location to accomodate different MAKE_TARGET values
 COPY --from=nim-build /app/build/$MAKE_TARGET /usr/local/bin/
