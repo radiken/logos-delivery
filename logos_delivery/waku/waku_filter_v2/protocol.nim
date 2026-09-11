@@ -203,12 +203,13 @@ proc pushToPeers(
       target_peer_ids = targetPeerIds,
       msg_hash = msgHash
   else:
-    trace "Pushing message to subscribed peers",
+    info "Pushing message to subscribed peers",
       pubsubTopic = messagePush.pubsubTopic,
       contentTopic = messagePush.wakuMessage.contentTopic,
       payload = shortLog(messagePush.wakuMessage.payload),
       target_peer_ids = targetPeerIds,
-      msg_hash = msgHash
+      msg_hash = msgHash,
+      sentTime = getNowInNanosecondTime()
 
     let bufferToPublish = messagePush.encode().buffer
     var pushFuts: seq[Future[Result[void, string]]]
