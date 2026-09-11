@@ -1,7 +1,7 @@
 # BUILD NIM APP ----------------------------------------------------------------
 FROM rustlang/rust:nightly-alpine3.19 AS nim-build
 
-ARG NIMFLAGS
+ARG NIMFLAGS="-d:chronicles_colors:none"
 ARG MAKE_TARGET=wakunode2
 ARG NIM_COMMIT
 ARG HEAPTRACK_BUILD=0
