@@ -194,9 +194,10 @@ proc initProtocolHandler(wfc: WakuFilterClient) =
       let msg_hash =
         computeMessageHash(msgPush.pubsubTopic, msgPush.wakuMessage).to0xHex()
 
-      trace "Received message push",
+      info "Received message push",
         peerId = conn.peerId,
         msg_hash,
+        receivedTime = getNowInNanosecondTime(),
         payload = shortLog(msgPush.wakuMessage.payload),
         pubsubTopic = msgPush.pubsubTopic,
         content_topic = msgPush.wakuMessage.contentTopic,
