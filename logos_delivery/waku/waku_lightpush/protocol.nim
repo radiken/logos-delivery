@@ -58,7 +58,7 @@ proc handleRequest(
   logos_delivery_lightpush_v3_messages.inc(labelValues = ["PushRequest"])
 
   let msg_hash = pubsubTopic.computeMessageHash(pushRequest.message).to0xHex()
-  debug "Handling lightpush request",
+  info "Handling lightpush request",
     my_peer_id = wl.peerManager.switch.peerInfo.peerId,
     peer_id = peerId,
     requestId = pushRequest.requestId,
