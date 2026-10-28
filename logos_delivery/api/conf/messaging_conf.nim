@@ -225,6 +225,8 @@ proc init*(
   ## The messaging config of a node that starts from the command line. A set flag
   ## overrides the value of the network preset.
   let fromFlags = MessagingClientConf(
-    reliabilityEnabled: flags.reliabilityEnabled, anonymityLevel: flags.anonymityLevel
+    reliabilityEnabled: flags.reliabilityEnabled,
+    anonymityLevel: flags.anonymityLevel,
+    backfillEnabled: flags.backfillEnabled,
   )
   return ok(merge(?resolvePreset(preset), fromFlags))

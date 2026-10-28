@@ -26,6 +26,13 @@ type MessagingNodeConf* = object
     name: "anonymity-level"
   .}: Opt[AnonymityLevel]
 
+  backfillEnabled* {.
+    desc:
+      "Catch up the messages missed while stopped from a Store node: true|false. Default is true.",
+    defaultValue: Opt.none(bool),
+    name: "backfill-enabled"
+  .}: Opt[bool]
+
 func isSet*(flags: MessagingNodeConf): bool =
   ## True when the command line sets a Messaging API flag.
   for _, field in fieldPairs(flags):
