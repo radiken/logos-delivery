@@ -4,7 +4,7 @@ FROM rustlang/rust:nightly-alpine3.19 AS nim-build
 ARG NIMFLAGS="-d:chronicles_colors:none"
 ARG NIM_COMMIT
 ARG HEAPTRACK_BUILD=0
-ARG POSTGRES=0
+ARG POSTGRES=1
 # Jenkins and `make docker-image` pass both of these as build arguments.
 #
 # DEBUG selects the build mode. Make reads 0 as release and an unset value as
